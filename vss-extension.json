@@ -1,0 +1,252 @@
+{
+    "manifestVersion": 1,
+    "id": "linked-picklists",
+    "version": "0.1.8",
+    "name": "Linked Picklists",
+    "publisher": "",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "icons": {
+        "default": "static/img/logo.png"
+    },
+    "scopes": [
+        "vso.code_full",
+        "vso.work",
+        "vso.work_write",
+        "vso.identity",
+        "vso.graph",
+        "vso.project",
+        "vso.security_manage"
+    ],
+    "categories": [
+        "Azure Boards"
+    ],
+    "contributions": [
+        {
+            "id": "picklist.control",
+            "description": "Group values from several fields, and calculate new value. regarding the requested functionality",
+            "type": "ms.vss-work-web.work-item-form-control",
+            "targets": [
+                "ms.vss-work-web.work-item-form"
+            ],
+            "properties": {
+                "name": "Control to link picklists",
+                "uri": "index.html",
+                "inputs": [{
+                        "id": "ControlName",
+                        "name": "Control Name",
+                        "description": "This field get the controll name, use for label and getting the infos from storage, as the csv file name",
+                        "type": "TextArea",
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": true
+                        }
+                    },
+                    {
+                        "id": "PAT",
+                        "name": "Personal Access Token",
+                        "description": "This field is to access the extent data and get the values ​​for the picklists.",
+                        "type": "TextArea",
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": true
+                        }
+                    },
+                    {
+                        "id": "Field1",
+                        "name": "Field level 1",
+                        "description": "The first field workItem Field",
+                        "type": "WorkItemField",
+                        "properties": {
+                            "workItemFieldTypes": [
+                                "String"
+                            ]
+                        },
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": true
+                        }
+                    },
+                    {
+                        "id": "Field2",
+                        "name": "Field level 2",
+                        "description": "The second field workItem Field",
+                        "type": "WorkItemField",
+                        "properties": {
+                            "workItemFieldTypes": [
+                                "String"
+                            ]
+                        },
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": true
+                        }
+                    },
+                    {
+                        "id": "Field3",
+                        "name": "Field level 3",
+                        "description": "The therd field workItem Field",
+                        "type": "WorkItemField",
+                        "properties": {
+                            "workItemFieldTypes": [
+                                "String"
+                            ]
+                        },
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": false
+                        }
+                    },
+                    {
+                        "id": "Field4",
+                        "name": "Field level 4",
+                        "description": "The forth field workItem Field",
+                        "type": "WorkItemField",
+                        "properties": {
+                            "workItemFieldTypes": [
+                                "String"
+                            ]
+                        },
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": false
+                        }
+                    },
+                    {
+                        "id": "Field5",
+                        "name": "Field level 5",
+                        "description": "The fifth field workItem Field",
+                        "type": "WorkItemField",
+                        "properties": {
+                            "workItemFieldTypes": [
+                                "String"
+                            ]
+                        },
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": false
+                        }
+                    },
+                    {
+                        "id": "Field6",
+                        "name": "Field level 6",
+                        "description": "The fifth field workItem Field",
+                        "type": "WorkItemField",
+                        "properties": {
+                            "workItemFieldTypes": [
+                                "String"
+                            ]
+                        },
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": false
+                        }
+                    },
+                    {
+                        "id": "Field7",
+                        "name": "Field level 7",
+                        "description": "The fifth field workItem Field",
+                        "type": "WorkItemField",
+                        "properties": {
+                            "workItemFieldTypes": [
+                                "String"
+                            ]
+                        },
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": false
+                        }
+                    },
+                    {
+                        "id": "Field8",
+                        "name": "Field level 8",
+                        "description": "The fifth field workItem Field",
+                        "type": "WorkItemField",
+                        "properties": {
+                            "workItemFieldTypes": [
+                                "String"
+                            ]
+                        },
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": false
+                        }
+                    },
+                    {
+                        "id": "Field9",
+                        "name": "Field level 9",
+                        "description": "The fifth field workItem Field",
+                        "type": "WorkItemField",
+                        "properties": {
+                            "workItemFieldTypes": [
+                                "String"
+                            ]
+                        },
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": false
+                        }
+                    },
+                    {
+                        "id": "SummarizeToPath",
+                        "name": "Summarize to a Path view",
+                        "description": "The forth fields toggether as path nice to use for querys and sorts",
+                        "type": "WorkItemField",
+                        "properties": {
+                            "workItemFieldTypes": [
+                                "String"
+                            ]
+                        },
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": false
+                        }
+                    },
+                    {
+                        "id": "ViewOption",
+                        "name": "View Option",
+                        "description": "This field get the Number of combox shows in one line",
+                        "type": "TextArea",
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": false
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": "hub.config",
+            "type": "ms.vss-web.hub",
+            "description": "Adds a 'Multi picker Fields Map Configuration' hub to the work Item configuration hub group.",
+            "targets": [
+                "ms.vss-web.collection-admin-hub-group"
+            ],
+            "properties": {
+                "name": "Linked Picklist",
+                "uri": "configHub.html",
+                "order": 110
+            }
+        }
+    ],
+    "files": [
+        {
+            "path": "node_modules/vss-web-extension-sdk/lib",
+            "addressable": true,
+            "packagePath": "lib"
+        },
+        {
+            "path": "static",
+            "addressable": true,
+            "packagePath": "/"
+        },
+        {
+            "path": "dist",
+            "addressable": true,
+            "packagePath": "src"
+        }
+    ]
+}

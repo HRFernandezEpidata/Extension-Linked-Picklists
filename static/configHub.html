@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="lib/VSS.SDK.min.js"></script>
+    <script>
+        // Initialize
+        VSS.init({
+            explicitNotifyLoaded: true,
+            usePlatformScripts: true,
+            usePlatformStyles: true,
+            configureModuleLoader: true,
+            applyTheme: true
+        });
+        
+        VSS.require(["src/configHub"], function() {
+            VSS.notifyLoadSucceeded();
+        });
+    </script>
+    <link rel="stylesheet" href="css/configHub.css">
+</head>
+<body class="body">
+    <h1 class="title">Linked Picklist</h1>
+    <section class="tab-bar">
+        <div class="tab-bar__tab tab-bar__tab--current" data-target="#config"><span>Data</span></div>
+    </section>
+    <div class="content-tab d-block" id="config" data-content>
+        <section class="section upload-csv">
+            <h2>Personal Access Token</h2>
+            <input type="text" id="pat"/>
+            <div class="section__btn">
+                <button id="btnViewData">View data</button>
+            </div>
+        </section>
+        <section class="control-values">
+            <h2>Control Values</h2>
+            <div id="control-values"></div>
+        </section>
+    </div>
+    <script src="src/tabs.js"></script>
+</body>
+</html>
