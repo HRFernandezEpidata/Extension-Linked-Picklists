@@ -12,13 +12,9 @@ define(["require", "exports"], function (require, exports) {
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ExtensionData = void 0;
     class ExtensionData {
-        static setValue(key, value) {
-            return __awaiter(this, void 0, void 0, function* () {
-            });
-        }
         static getValue(orgName, pat, key, scopeType) {
             return __awaiter(this, void 0, void 0, function* () {
-                let urlExtensionData = 'https://extmgmt.dev.azure.com/' + orgName + '/_apis/ExtensionManagement/InstalledExtensions/HernanFernandez/linked-picklists/Data/Scopes';
+                let urlExtensionData = 'https://extmgmt.dev.azure.com/' + orgName + '/_apis/ExtensionManagement/InstalledExtensions/' + this.publisher + '/linked-picklists/Data/Scopes';
                 urlExtensionData += scopeType == 'User' ? '/User/Me' : '/Default/Current';
                 urlExtensionData += '/Collections/%24settings/Documents/';
                 pat = btoa(":" + pat);
@@ -37,4 +33,5 @@ define(["require", "exports"], function (require, exports) {
         }
     }
     exports.ExtensionData = ExtensionData;
+    ExtensionData.publisher = '';
 });
