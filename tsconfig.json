@@ -1,5 +1,5 @@
 {
-  "compilerOptions": {
+   "compilerOptions": {
       "module": "amd",
       "moduleResolution": "node",
       "lib": ["es6", "dom", "es2017"],
@@ -8,6 +8,7 @@
       "outDir": "dist/",
       "types": [
           "vss-web-extension-sdk"
-      ]	
+      ],
+      "skipLibCheck": true
   }
 }
