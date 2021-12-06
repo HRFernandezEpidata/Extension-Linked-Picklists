@@ -18,9 +18,14 @@ export class ExtensionData {
         });
 
         const result = await response.json();
+
+        if (result.value == undefined)
+            return undefined;
+        
         const document = result.value.find(doc => doc.id == key);
         if (document != undefined)
             return document.value;
+            
         return undefined;
     }
 

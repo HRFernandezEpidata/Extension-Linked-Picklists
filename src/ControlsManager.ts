@@ -16,6 +16,8 @@ export class ControlsManager {
                 controlsData.forEach((control) => controls.push(PickListControl.createFromObject(control)));
             }
         }).catch(error => {
+            console.log("getAllControls");
+            console.log(error);
             throw new Error("Network error trying to retrieve the resource. It is possible that the 'PAT' is invalid.");
         });
 
@@ -35,6 +37,8 @@ export class ControlsManager {
                     control = PickListControl.createFromObject(controlData);
             }
         }).catch(error => {
+            console.log("getControl");
+            console.log(error);
             throw new Error("Network error trying to retrieve the resource. It is possible that the 'PAT' is invalid.");
         });
 

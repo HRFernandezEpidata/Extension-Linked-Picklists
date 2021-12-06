@@ -1,3 +1,4 @@
+import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
 import { PickListControl, PickListValuesProject } from "./PickListControl";
 
 export class Model {
@@ -11,57 +12,53 @@ export class Model {
     public viewOption: string;
     public fieldValuesList: Array<Array<string>> = new Array<Array<string>>();
 
-    constructor(control :PickListControl, viewOption: string,
+    constructor() {   
+    }
+
+    public async init(control :PickListControl, viewOption: string,
         fieldNames :Array<string>, fieldRefNames :Array<string>, fieldValues :Array<string>,
-        summarizeToPathRefName: string, summarizeToPath: string) {   
-        
+        summarizeToPathRefName: string, summarizeToPath: string) {
+
         this.summarizeToPathRefName = summarizeToPathRefName;
-        this.summarizeToPath = summarizeToPath;
-        this.viewOption = viewOption != undefined ? viewOption : "1"; 
-        this.control = control;
+            this.summarizeToPath = summarizeToPath;
+            this.viewOption = viewOption != undefined ? viewOption : "1"; 
+            this.control = control;
+    
+            const currentProjectName = VSS.getWebContext().project.name;
+            let valuesControl :Array<Array<string>> = undefined;
+            const valuesProject :PickListValuesProject = this.control.getValuesProjects()
+                .find(vp => vp.getProjectName() == currentProjectName); 
+    
+            if (valuesProject != undefined) {
+                valuesControl = valuesProject.getValues();
+            }
+            else { 
+                const valuesCollection = this.control.getValuesOrganization()
+                if (valuesCollection != undefined)
+                    valuesControl = valuesCollection.getValues();
+            }
+    
+            this.fieldValuesList = valuesControl;
+            if (this.fieldValuesList == undefined)
+            {
+                this.fieldValuesList = [];
+                this.fieldValuesList[0] = [];
 
-        const currentProjectName = VSS.getWebContext().project.name;
-        let valuesControl :Array<Array<string>> = undefined;
-        const valuesProject :PickListValuesProject = this.control.getValuesProjects()
-            .find(vp => vp.getProjectName() == currentProjectName); 
+                const service = await WorkItemFormService.getService();
+                const fields = await service.getFields();
+                fieldRefNames.forEach(fieldRefName => {
+                    this.fieldValuesList[0].push(
+                        fields.find(f => f.referenceName === fieldRefName).name
+                    );
+                });
 
-        if (valuesProject != undefined) {
-            valuesControl = valuesProject.getValues();
-        }
-        else {
-            const valuesCollection = this.control.getValuesOrganization()
-            if (valuesCollection != undefined)
-                valuesControl = valuesCollection.getValues();
-        }
+            }
+    
+            this.fieldNames = this.fieldValuesList.shift().slice(0, fieldRefNames.length);
 
-        this.fieldValuesList = valuesControl;
-
-        this.fieldNames = this.fieldValuesList.shift().slice(0, fieldRefNames.length);
-        this.fieldValues = fieldValues;
-        this.fieldRefNames = fieldRefNames;
-
-        // this.fieldNames.push(fieldNames[0]);
-        // this.fieldValues.push(fieldValues[0]);
-        // this.fieldRefNames.push(fieldRefNames[0]);
-
-        // this.fieldNames.push(fieldNames[1]);
-        // this.fieldValues.push(fieldValues[1]);
-        // this.fieldRefNames.push(fieldRefNames[1]);
-        // this.summarizeToPath = fieldValues[0] + '\\' + fieldValues[1];
-
-        // for (let i = 2; i < fieldNames.length; i++) {
-        //     if (fieldNames[i] != null && fieldNames[i] != undefined && fieldValues[i] != null && fieldValues[i] != undefined) {
-        //         if (fieldValues[i] != "")
-        //             this.summarizeToPath += '\\' + fieldValues[i];
-
-        //         this.fieldNames.push(fieldNames[i]);
-        //         this.fieldValues.push(fieldValues[i]);
-        //         this.fieldRefNames.push(fieldRefNames[i]);
-        //     }
-        //     else
-        //         break;
-        // }
-
+            this.fieldValues = fieldValues;
+            this.fieldRefNames = fieldRefNames;
+            
     }
     
     public toString() {

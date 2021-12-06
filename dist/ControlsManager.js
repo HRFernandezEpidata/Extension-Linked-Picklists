@@ -22,6 +22,8 @@ define(["require", "exports", "./ExtensionData", "./PickListControl"], function 
                         controlsData.forEach((control) => controls.push(PickListControl_1.PickListControl.createFromObject(control)));
                     }
                 }).catch(error => {
+                    console.log("getAllControls");
+                    console.log(error);
                     throw new Error("Network error trying to retrieve the resource. It is possible that the 'PAT' is invalid.");
                 });
                 return controls;
@@ -39,6 +41,8 @@ define(["require", "exports", "./ExtensionData", "./PickListControl"], function 
                             control = PickListControl_1.PickListControl.createFromObject(controlData);
                     }
                 }).catch(error => {
+                    console.log("getControl");
+                    console.log(error);
                     throw new Error("Network error trying to retrieve the resource. It is possible that the 'PAT' is invalid.");
                 });
                 return control;

@@ -88,18 +88,15 @@ define(["require", "exports"], function (require, exports) {
         add(valuesProject) {
             let projectNameExist = false;
             const i = this.valuesProjects.findIndex(vp => vp.getProjectName() == valuesProject.getProjectName());
-            if (i != -1) {
+            if (i != -1)
                 this.valuesProjects[i] = valuesProject;
-            }
-            else {
+            else
                 this.valuesProjects.push(valuesProject);
-            }
         }
         delete(projName) {
             const i = this.valuesProjects.findIndex(vp => vp.getProjectName() == projName);
-            if (i != -1) {
+            if (i != -1)
                 this.valuesProjects.splice(i, 1);
-            }
         }
         getValuesProject(projName) {
             return this.valuesProjects.find(vp => vp.getProjectName() == projName);

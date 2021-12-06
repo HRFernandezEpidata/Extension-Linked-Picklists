@@ -25,6 +25,8 @@ define(["require", "exports"], function (require, exports) {
                     },
                 });
                 const result = yield response.json();
+                if (result.value == undefined)
+                    return undefined;
                 const document = result.value.find(doc => doc.id == key);
                 if (document != undefined)
                     return document.value;
@@ -33,5 +35,5 @@ define(["require", "exports"], function (require, exports) {
         }
     }
     exports.ExtensionData = ExtensionData;
-    ExtensionData.publisher = '';
+    ExtensionData.publisher = 'MyPublisher45782';
 });

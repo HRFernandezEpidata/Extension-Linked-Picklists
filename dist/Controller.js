@@ -46,13 +46,13 @@ define(["require", "exports", "TFS/WorkItemTracking/Services", "./ControlsManage
                 }
                 const summarizeToPath = fields[this.refSummarizeToPath] ? fields[this.refSummarizeToPath].toString() : "";
                 const pat = inputs["PAT"];
-                yield ControlsManager_1.ControlsManager.getControl(this.controlName, pat).then(control => {
-                    console.log(control);
+                yield ControlsManager_1.ControlsManager.getControl(this.controlName, pat).then((control) => __awaiter(this, void 0, void 0, function* () {
                     if (control == undefined)
                         control = new PickListControl_1.PickListControl(this.controlName);
-                    this.model = new Model_1.Model(control, this.viewOption, this.fieldNames, this.refFieldNames, refFieldValues, this.refSummarizeToPath, summarizeToPath);
+                    this.model = new Model_1.Model();
+                    yield this.model.init(control, this.viewOption, this.fieldNames, this.refFieldNames, refFieldValues, this.refSummarizeToPath, summarizeToPath);
+                    console.log(this.model.toString());
                     this.view = new View_1.View(this.model.fieldNames);
-                    this.model.toString();
                     const selects = this.view.getSelects();
                     for (let i = 0; i < selects.length; i++)
                         selects[i].addEventListener('change', () => this.updateValues(i + 1));
@@ -60,7 +60,7 @@ define(["require", "exports", "TFS/WorkItemTracking/Services", "./ControlsManage
                         this.view.showErrorMessage('There is no data loaded to fill in the fields.');
                     else
                         this.setLastSavedValues();
-                })
+                }))
                     .catch(error => {
                     this.view = new View_1.View([]);
                     this.view.showErrorMessage(error.message);

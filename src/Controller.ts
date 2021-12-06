@@ -1,3 +1,5 @@
+import { WorkItemTrackingProcessTemplateHttpClient } from "TFS/WorkItemTracking/ProcessTemplateRestClient";
+import { WorkItemTrackingHttpClient } from "TFS/WorkItemTracking/RestClient";
 import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
 import { ControlsManager } from "./ControlsManager";
 import { Model } from "./Model";
@@ -53,17 +55,20 @@ export class Controller {
         const summarizeToPath = fields[this.refSummarizeToPath] ? fields[this.refSummarizeToPath].toString() : "";
 
         const pat = inputs["PAT"];
-        await ControlsManager.getControl(this.controlName, pat).then(control => {
-            console.log(control);
+        await ControlsManager.getControl(this.controlName, pat).then(async control => {
             if (control == undefined)
                 control = new PickListControl(this.controlName);
+            
 
-            this.model = new Model(control, this.viewOption,
+            this.model = new Model();
+            await this.model.init(control, this.viewOption,
                 this.fieldNames, this.refFieldNames, refFieldValues,
                 this.refSummarizeToPath, summarizeToPath);
         
+            console.log(this.model.toString());
+            
             this.view = new View(this.model.fieldNames);
-this.model.toString();
+
             const selects = this.view.getSelects();
             for (let i = 0; i < selects.length; i++)
                 selects[i].addEventListener('change', () => this.updateValues(i+1));

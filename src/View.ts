@@ -10,7 +10,6 @@ export class View {
     constructor(selectNames :Array<string>) {
         this.body = document.querySelector('body');
         this.createMessageArea();
-
         if (selectNames.length > 0)
             this.createSelects(selectNames, 1);
     }
@@ -39,7 +38,7 @@ export class View {
             div.appendChild(label);
             div.appendChild(newSelect);
             div.classList.add('divSelect');
-            div.style.width = (90 / viewOption).toString() + '%';
+            div.style.width = (100 / viewOption).toString() + '%';
             div.classList.add('selectedDiv');
 
             container.appendChild(div);
