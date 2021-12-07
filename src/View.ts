@@ -92,4 +92,11 @@ export class View {
         return this.selects;
     }
 
+    public getOptions(idSelect) {
+        const select :HTMLSelectElement = this.selects[idSelect-1];
+        const options = []
+        for (var i=0, n=select.options.length;i<n;i++)
+            options.push(select.options[i].value);
+        return options;
+    }
 }

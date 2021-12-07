@@ -142,9 +142,14 @@ export class Controller {
                 this.view.clearSelect(idSelect);
                 this.model.fieldValues[idSelect-1] = '';
             }
-            
+
             this.fillSelect(idNextSelect);
             this.view.setSelectValue(idNextSelect, '');
+
+            if(this.view.getOptions(idNextSelect).includes('')) {
+                this.fillSelect(idNextSelect+1);
+                this.view.setSelectValue(idNextSelect+1, '');
+            }
         }
 
         this.model.summarizeToPath = this.model.fieldValues.filter(v => v != '').join('\\');

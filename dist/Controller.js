@@ -117,6 +117,11 @@ define(["require", "exports", "TFS/WorkItemTracking/Services", "./ControlsManage
                 }
                 this.fillSelect(idNextSelect);
                 this.view.setSelectValue(idNextSelect, '');
+                console.log(this.view.getOptions(idNextSelect).includes(''));
+                if (this.view.getOptions(idNextSelect).includes('')) {
+                    this.fillSelect(idNextSelect + 1);
+                    this.view.setSelectValue(idNextSelect + 1, '');
+                }
             }
             this.model.summarizeToPath = this.model.fieldValues.filter(v => v != '').join('\\');
             this.updateWorkItem();

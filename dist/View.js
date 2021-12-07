@@ -72,6 +72,13 @@ define(["require", "exports"], function (require, exports) {
         getSelects() {
             return this.selects;
         }
+        getOptions(idSelect) {
+            const select = this.selects[idSelect - 1];
+            const options = [];
+            for (var i = 0, n = select.options.length; i < n; i++)
+                options.push(select.options[i].value);
+            return options;
+        }
     }
     exports.View = View;
 });

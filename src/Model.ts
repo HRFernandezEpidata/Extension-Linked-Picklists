@@ -37,14 +37,13 @@ export class Model {
                 if (valuesCollection != undefined)
                     valuesControl = valuesCollection.getValues();
             }
-    
+            const service = await WorkItemFormService.getService();
             this.fieldValuesList = valuesControl;
             if (this.fieldValuesList == undefined)
             {
                 this.fieldValuesList = [];
                 this.fieldValuesList[0] = [];
 
-                const service = await WorkItemFormService.getService();
                 const fields = await service.getFields();
                 fieldRefNames.forEach(fieldRefName => {
                     this.fieldValuesList[0].push(
@@ -55,9 +54,9 @@ export class Model {
             }
     
             this.fieldNames = this.fieldValuesList.shift().slice(0, fieldRefNames.length);
-
             this.fieldValues = fieldValues;
             this.fieldRefNames = fieldRefNames;
+            
             
     }
     

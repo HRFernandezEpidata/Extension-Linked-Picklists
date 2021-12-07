@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "linked-picklists",
-    "version": "0.1.1",
+    "version": "0.1.5",
     "name": "Linked Picklists",
     "publisher": "",
     "targets": [

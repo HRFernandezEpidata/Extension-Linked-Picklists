@@ -33,11 +33,11 @@ define(["require", "exports", "TFS/WorkItemTracking/Services"], function (requir
                     if (valuesCollection != undefined)
                         valuesControl = valuesCollection.getValues();
                 }
+                const service = yield Services_1.WorkItemFormService.getService();
                 this.fieldValuesList = valuesControl;
                 if (this.fieldValuesList == undefined) {
                     this.fieldValuesList = [];
                     this.fieldValuesList[0] = [];
-                    const service = yield Services_1.WorkItemFormService.getService();
                     const fields = yield service.getFields();
                     fieldRefNames.forEach(fieldRefName => {
                         this.fieldValuesList[0].push(fields.find(f => f.referenceName === fieldRefName).name);
