@@ -29,7 +29,7 @@
 }
 
 .labelPicklist {
-    display: block;
+    margin-right: 3px;
     margin-top: 5px;
     padding-left: 4px;
 }

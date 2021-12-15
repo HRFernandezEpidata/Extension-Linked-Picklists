@@ -35,15 +35,13 @@ define(["require", "exports", "TFS/WorkItemTracking/Services"], function (requir
                 }
                 const service = yield Services_1.WorkItemFormService.getService();
                 this.fieldValuesList = valuesControl;
-                if (this.fieldValuesList == undefined) {
+                if (this.fieldValuesList == undefined)
                     this.fieldValuesList = [];
-                    this.fieldValuesList[0] = [];
-                    const fields = yield service.getFields();
-                    fieldRefNames.forEach(fieldRefName => {
-                        this.fieldValuesList[0].push(fields.find(f => f.referenceName === fieldRefName).name);
-                    });
-                }
-                this.fieldNames = this.fieldValuesList.shift().slice(0, fieldRefNames.length);
+                this.fieldNames = [];
+                const fields = yield service.getFields();
+                fieldRefNames.forEach(fieldRefName => {
+                    this.fieldNames.push(fields.find(f => f.referenceName === fieldRefName).name);
+                });
                 this.fieldValues = fieldValues;
                 this.fieldRefNames = fieldRefNames;
             });
